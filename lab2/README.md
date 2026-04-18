@@ -1,17 +1,8 @@
 # lab2
 
-A new Flutter project.
+Micard
 
-## Getting Started
+Demo image:
 
-This project is a starting point for a Flutter application.
+<img width="884" height="879" alt="Screenshot 2026-04-18 150309" src="https://github.com/user-attachments/assets/6c72fd18-0014-40a6-9e5f-087b09dfec08" />
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
