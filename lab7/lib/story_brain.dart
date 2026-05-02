@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'story.dart';
 
 class StoryBrain {
@@ -51,7 +53,7 @@ class StoryBrain {
         altNextIndex2: 9), // Replacement destination
     // index 7: Went to the left room after checking the right room
     Story(
-        text: 'You went to the room on the left and found a note. Nowhere left but upstairs to go.',
+        text: 'You went to the room on the left and found a note which say: "At the end of the crossroad, do not turn left". Nowhere left but upstairs to go.',
         choice1: 'Go upstairs',
         choice2: 'Try to get out of the house.',
         nextIndex1: 9,
@@ -139,18 +141,47 @@ class StoryBrain {
         nextIndex2: 19),
     // index 19: Check out the new opening downstairs
     Story(
-        text: 'You went downstairs and found a hidden basement. There was a ritual circle on the ground, that seemed to be the source of the dome, a sealed doorway and a note.',
+        text: 'You went downstairs and found a hidden basement. There was a ritual circle on the ground, that seemed to be the source of the dome, a barricaded doorway and a note.',
         choice1: 'Check the note',
-        choice2: 'Check the sealed doorway',
+        choice2: 'Check the barricaded doorway',
         nextIndex1: 20,
         nextIndex2: 21),
     // index 20: Check the note
     Story(
-        text: '"I\'ve seen it"',
-        choice1: 'Perform the ritual',
-        choice2: 'Perform the ritual',
+        text: '"I\'ve seen it, now I know everything, but I can do nothing. Im sorry, but thankful that you\'re here. The seal can only detect presence to stay active, and they can hid it, unless someone were to come. In this place without time, once the dome is activated, it will never go down. But, I left a crack for you, at the end of the crossroad, go, and hope may they will never escape."',
+        choice1: 'Check the barricaded doorway',
+        choice2: 'Check the barricaded doorway',
+        nextIndex1: 21,
+        nextIndex2: 21,
+        tagToGrant: 'note_checked'),
+    // index 21: Check the barricaded doorway
+    Story(
+        text: 'The door is barricaded with some planks, but it seems like it can be broken down.',
+        choice1: 'Break the barricade and go through the doorway',
+        choice2: 'Check the note',
         nextIndex1: 22,
-        nextIndex2: 22),
+        nextIndex2: 20,
+        requiredTag: 'note_checked',
+        altChoice2: 'Break the barricade and go through the doorway', // Replacement text
+        altNextIndex2: 22),
+    // index 22: Break the barricade and go through the doorway
+    Story(
+        text: 'You broke the barricade and went through the doorway. You found yourself in a crossroad, the path foward is collapsed, but there are two paths on the left and right.',
+        choice1: 'Go left',
+        choice2: 'Go right',
+        nextIndex1: 23,
+        nextIndex2: 24),
+    // index 23: Ending: At the end of the crossroad, do not turn left
+    Ending(text: 'It was wating there, for you, to look at it. Now you\'ve known everything, the past, the future, but you wished you didn\'t. As you gauge both of your eyes out, hoping to forget what you saw, but in the end, you looked at it.'),
+    // index 24: Go right
+    Story(
+        text: 'You could feel it, something is behind you, but now that you saw a light at the end of the path, you felt like you can escape, but something felt wrong.',
+        choice1: 'Keep running',
+        choice2: 'Keep running AND CLOSE YOUR EYES',
+        nextIndex1: 23,
+        nextIndex2: 25),
+    // index 25: Ending: Keep running and close your eyes
+    Ending(text: 'You could feel it, not behind you anymore, but in front of you. You kept running and running, hitting the wall, tripping, and get up, until your body colapsed, until you... couldn\'t feel it anymore. And when you open your eyes, you are at where you started, looking at the top of the hill, with no house to be seen, nothing... to look at. The end.'),
   ];
 
   // Helper to get text for Choice 2 based on tags
