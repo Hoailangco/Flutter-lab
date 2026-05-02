@@ -33,7 +33,8 @@ class Ball extends StatefulWidget {
 }
 
 class _BallState extends State<Ball> {
-  int ballNumber = 1;
+  // Start with the default ball0 image
+  int ballNumber = 0; 
   bool isShaking = false;
   Timer? _timer;
 
@@ -42,18 +43,19 @@ class _BallState extends State<Ball> {
 
     setState(() => isShaking = true);
 
-    // Rapidly change the image to simulate shaking
+    // Rapidly change between ball1 and ball5 to simulate shaking/thinking
     _timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
       setState(() {
-        ballNumber = Random().nextInt(6) + 1;
+        ballNumber = Random().nextInt(5) + 1;
       });
     });
 
-    // Settle on an answer after 1 second
-    Future.delayed(const Duration(seconds: 1), () {
+    // Settle on the final answer after 1.2 seconds
+    Future.delayed(const Duration(milliseconds: 1200), () {
       _timer?.cancel();
       setState(() {
         isShaking = false;
+        // ballNumber is already set to a random 1-5 from the last timer tick
       });
     });
   }
@@ -63,6 +65,7 @@ class _BallState extends State<Ball> {
     return Center(
       child: TextButton(
         onPressed: shakeBall,
+        // This will load 'images/ball0.png' on first launch
         child: Image.asset('images/ball$ballNumber.png'),
       ),
     );
